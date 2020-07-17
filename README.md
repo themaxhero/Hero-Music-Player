@@ -3,7 +3,7 @@
 ## Introduction
 I've made this music player for exercising my elm skills.
 
-![Image of Hero Music Player](https://pasteboard.co/Ji0HJZg.png)
+![Image of Hero Music Player](https://i.imgur.com/MWreKdx.png)
 
 ## How to Run
 ```
