@@ -1,5 +1,10 @@
 # Hero Music Player
 
+## Introduction
+I've made this music player for exercising my elm skills.
+
+![Image of Hero Music Player](https://pasteboard.co/Ji0HJZg.png)
+
 ## How to Run
 ```
 $ npm i
