@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hero Music Player</title>
+  <script src="./dist/main.js"></script>
+</head>
+  <body>
+    <audio id="player"></audio>
+    <div id="elm"></div>
+    <script>
+      var app;
+      window.addEventListener('DOMContentLoaded', (event) => {
+        app = Elm.Main.init({ node: document.getElementById("elm") });
+        let player = document.getElementById("player");
+        player.volume = 1.0;
+        var interval;
+
+        player.addEventListener('canplaythrough', () => {
+          app.ports.listenPlayerTime.send(player.currentTime);
+          app.ports.refresh.send(player.duration);
+        });
+
+        player.addEventListener('play', () => {
+          if (interval) clearInterval(interval);
+          interval = setInterval(() => app.ports.listenPlayerTime.send(player.currentTime), 200);
+        });
+
+        player.addEventListener('pause', () => clearInterval(interval));
+
+        app.ports.requestSource.send("");
+
+        app.ports.updateAudioSource.subscribe((data) => {
+          let isPlaying = !player.paused
+          player.src = data;
+          app.ports.refresh.send(player.duration);
+          
+          if (isPlaying) player.play();
+        });
+
+        player.pause();
+
+        app.ports.resume.subscribe(() => player.play());
+
+        app.ports.pause.subscribe(() => player.pause());
+
+        app.ports.stop.subscribe(() => {
+          player.pause();
+          player.currentTime = 0;
+        });
+
+        app.ports.mute.subscribe((muted) => player.muted = muted);
+
+        app.ports.changeVolume.subscribe((data) =>  player.volume = data);
+
+        app.ports.alert.subscribe((data) => alert(data));
+      });
+    </script>
+  </body>
+</html>

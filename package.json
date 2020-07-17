@@ -1,0 +1,16 @@
+{
+  "name": "hero-music-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "npm run",
+    "dev": "make dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcelo \"maxhero\" Amancio de Lima Santos",
+  "license": "MIT",
+  "dependencies": {
+    "elm-live": "^4.0.0-rc.1"
+  }
+}
