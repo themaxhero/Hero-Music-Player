@@ -80,11 +80,6 @@ list (prev, currentSong, next) =
 play : Song -> Queue -> Queue
 play song queue =
   findSong song (reset queue)
-  --case foldlWithSource searchReducer (song, False, reset queue) queue of
-    --(_, True, newQueue) ->
-      --newQueue
-    --(_, False, _) ->
-      --queue
 
 foldl : (Song -> a -> a) -> a -> Queue -> a
 foldl f acc queue =
